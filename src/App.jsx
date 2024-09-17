@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import FontPage from './FirstPage/FontPage';
 import RightContent from './FirstPage/RightContent';
-import GitHubLoginComponent from './GitHubLoginComponent'; // Assuming this component handles GitHub OAuth
+import GitHubLoginComponent from './GitHub/GitHubAuth';
 
 function App() {
   const [youtube, setYoutube] = useState(false);
@@ -32,18 +32,19 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route path="/github/callback">
-          <GitHubLoginComponent />
-        </Route>
-        <Route path="/">
-          <div style={{ maxWidth: "50%", display: "flex", gap:"1%" }} className="App bg-white rounded-lg">
-            <FontPage />
-            <div style={{ width: 1 }} className="bg-gray-400 min-h-full"></div>
-            <RightContent youtube={youtube} github={github} />
-          </div>
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/github/callback" element={<GitHubLoginComponent />} />
+        <Route 
+          path="/" 
+          element={
+            <div style={{ maxWidth: "50%", display: "flex", gap:"1%" }} className="App bg-white rounded-lg">
+              <FontPage />
+              <div style={{ width: 1 }} className="bg-gray-400 min-h-full"></div>
+              <RightContent youtube={youtube} github={github} />
+            </div>
+          } 
+        />
+      </Routes>
     </Router>
   );
 }
