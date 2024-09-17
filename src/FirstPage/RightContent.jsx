@@ -32,13 +32,13 @@ function RightContent({ youtube, github }) {
                     <div>
                         {youtube && github ? (
                             <img
-                                src="/public/QR.svg"
+                                src="QR.svg"
                                 alt="QR Code"
                                 width={150}
                             />
                         ) : (
                             <img
-                                src="./alternative.png"
+                                src="alternative.png"
                                 alt="see Troubleshooting"
                                 width={150}
                             />
