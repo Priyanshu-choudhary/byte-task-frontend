@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      {
+        "source": "/github/callback",
+        "destination": "/api/github/callback"
+      }
+    ]
+  }
+  
