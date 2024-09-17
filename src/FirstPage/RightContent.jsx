@@ -5,7 +5,7 @@ function RightContent({ youtube, github }) {
     return (
         <div className='m-2'>
 
-            <p className='font-bold text-xl mb-10 '>Please choose an options:</p>
+            <p className='font-bold text-xl mb-10 '>Please Choose an options:</p>
             <div className='flex gap-10'>
 
                 <div style={{ display: "flex" }}>
