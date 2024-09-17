@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const GITHUB_LOGIN_URL = 'http://localhost:8080/github/Mylogin'; // Backend URL
+const GITHUB_LOGIN_URL = 'https://byte-task-backend-1.onrender.com/github/Mylogin'; // Backend URL
 
 function GitHubLoginComponent() {
   const [isFollowingGitHub, setIsFollowingGitHub] = useState(null);
@@ -10,7 +10,7 @@ function GitHubLoginComponent() {
 
   const handleGitHubLogin = () => {
     // Opens the GitHub OAuth login URL
-    window.location.href = 'https://github.com/login/oauth/authorize?client_id=Ov23liLIl84lbSyZDBgh&redirect_uri=http://localhost:5173/github/callback&scope=user:follow';
+    window.location.href = 'https://github.com/login/oauth/authorize?client_id=Ov23liLIl84lbSyZDBgh&redirect_uri=https://byte-task-frontend.vercel.app/github/callback&scope=user:follow';
   };
 
   const handleGitHubRedirect = async () => {
@@ -20,7 +20,7 @@ function GitHubLoginComponent() {
     if (code && !accessToken) { // If code exists and token is not set
       try {
         // Exchange the code for an access token
-        const response = await axios.get(`http://localhost:8080/github/callback?code=${code}`);
+        const response = await axios.get(`https://byte-task-backend-1.onrender.com/github/callback?code=${code}`);
         const retrievedAccessToken = response.data;
         setAccessToken(retrievedAccessToken); // Store the token
         console.log('Access Token:', retrievedAccessToken);
@@ -34,7 +34,7 @@ function GitHubLoginComponent() {
   const checkGitHubFollowStatus = async (token) => {
     try {
       // Call the follow-check API only after access token is received
-      const followResponse = await axios.get(`http://localhost:8080/github/check-follow?accessToken=${token}`);
+      const followResponse = await axios.get(`https://byte-task-backend-1.onrender.com/github/check-follow?accessToken=${token}`);
       setIsFollowingGitHub(followResponse.data); // Update the state with follow status
     } catch (error) {
       setErrorMessage('Error checking GitHub follow status');
