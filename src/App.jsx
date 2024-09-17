@@ -33,7 +33,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/github/callback" element={<GitHubLoginComponent />} />
+        <Route path="/github/callback" element={
+           <div style={{ maxWidth: "50%", display: "flex", gap:"1%" }} className="App bg-white rounded-lg">
+           <FontPage />
+           <div style={{ width: 1 }} className="bg-gray-400 min-h-full"></div>
+           <RightContent youtube={youtube} github={github} />
+         </div>
+        } />
         <Route 
           path="/" 
           element={
