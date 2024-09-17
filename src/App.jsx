@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-
 import FontPage from './FirstPage/FontPage';
 import RightContent from './FirstPage/RightContent';
+import GitHubLoginComponent from './GitHubLoginComponent'; // Assuming this component handles GitHub OAuth
 
 function App() {
   const [youtube, setYoutube] = useState(false);
@@ -15,8 +16,8 @@ function App() {
       const youtubeData = localStorage.getItem('youtube');
       const githubData = localStorage.getItem('github');
 
-      setYoutube(youtubeData);
-      setGithub(githubData);
+      setYoutube(youtubeData === 'true');
+      setGithub(githubData === 'true');
     };
 
     // Initial check
@@ -27,15 +28,23 @@ function App() {
 
     // Clean up interval on component unmount
     return () => clearInterval(intervalId);
-  }, [github]); // Add `github` as a dependency if you want to recheck when `github` changes
+  }, []);
 
   return (
-    <div style={{ maxWidth: "50%", display: "flex", gap:"1%"}} className="App bg-white rounded-lg  ">
-      
-      <FontPage />
-      <div  style={{width:1}}className='bg-gray-400  min-h-full '></div>
-      <RightContent youtube={youtube} github={github} />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/github/callback">
+          <GitHubLoginComponent />
+        </Route>
+        <Route path="/">
+          <div style={{ maxWidth: "50%", display: "flex", gap:"1%" }} className="App bg-white rounded-lg">
+            <FontPage />
+            <div style={{ width: 1 }} className="bg-gray-400 min-h-full"></div>
+            <RightContent youtube={youtube} github={github} />
+          </div>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
