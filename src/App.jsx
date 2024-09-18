@@ -34,7 +34,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/github/callback" element={
-           <div style={{ maxWidth: "50%", display: "flex", gap:"1%" }} className="App bg-white rounded-lg">
+           <div style={{  display: "md:flex", gap:"1%" }} className="App bg-white rounded-lg max-w-fit overflow-x-scroll">
            <FontPage />
            <div style={{ width: 1 }} className="bg-gray-400 min-h-full"></div>
            <RightContent youtube={youtube} github={github} />
@@ -43,7 +43,7 @@ function App() {
         <Route 
           path="/" 
           element={
-            <div style={{ maxWidth: "50%", display: "flex", gap:"1%" }} className="App bg-white rounded-lg">
+            <div style={{  display: "md:flex", gap:"1%" }} className="App bg-white rounded-lg max-w-fit overflow-x-scroll">
               <FontPage />
               <div style={{ width: 1 }} className="bg-gray-400 min-h-full"></div>
               <RightContent youtube={youtube} github={github} />
